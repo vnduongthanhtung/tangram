@@ -1,4 +1,5 @@
 var http = require('http');
+/*
 var jpeg = require('jpeg-js');
 var ffi = require('ffi');
 var ref = require('ref');
@@ -7,7 +8,7 @@ var ArrayType = require('ref-array');
 var FloatArray = ArrayType(ref.types.float);
 var int = ref.types.int;
 
-var lib = null;
+var lib = null;*/
 
 http.createServer(function (req, res) {
 
@@ -17,6 +18,7 @@ http.createServer(function (req, res) {
 	res.setHeader('Access-Control-Allow-Headers', '*');
 	
     res.writeHead(200, { 'Content-Type': 'text/plain' });
+    /*
     req.on('data', function (chunk) {
 		if(lib == null){
 			 lib = ffi.Library('libimg', {
@@ -42,7 +44,8 @@ http.createServer(function (req, res) {
         var ok = lib.fitOnImage(new FloatArray(imgR), new FloatArray(imgG), new FloatArray(imgB), imageData.width, imageData.height, data.img_id);
         console.log("ok=" + ok);
         res.end(ok + '');
-    });
+    });*/
+    res.end('ok');
 
 }).listen(8080);
 
