@@ -11,7 +11,7 @@ http.createServer(function (req, res) {
 	
     res.writeHead(200, { 'Content-Type': 'text/plain' });
     req.on('data', function (chunk) {
-        //console.log('GOT DATA! : ' + chunk);
+        console.log('GOT DATA! : ');
         var data = JSON.parse(chunk.toString());
         var bitmap = new Buffer(data.img_data, 'base64');
         var imageData = jpeg.decode(bitmap);

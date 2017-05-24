@@ -7,9 +7,8 @@
 
 #define __DEBUG__
 
-#include "/media/mint/9CFC-DB7F/C/array.h"
-#include "/media/mint/9CFC-DB7F/C/list.h"
-#include "/media/mint/9CFC-DB7F/C/map.h"
+#include "array.h"
+#include "list.h"
 
 typedef unsigned char bool;
 typedef unsigned char byte;
