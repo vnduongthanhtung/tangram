@@ -13,17 +13,21 @@ http.createServer(function (req, res) {
     req.on('data', function (chunk) {
         console.log('GOT DATA! : ');
         var data = JSON.parse(chunk.toString());
-        var bitmap = new Buffer(data.img_data, 'base64');
-        var imageData = jpeg.decode(bitmap);
-        var fname = (new Date()).getTime() + ".raw";
-		fs.writeFileSync(fname, imageData.data);
-		var cmd = './imgproc border/' + data.img_id + '.txt ' + fname + ' ' + imageData.width + ' ' + imageData.height;
-		console.log(cmd);
-		exec(cmd, function(error, stdout, stderr) {
-			fs.unlinkSync(fname);
-			console.log(stdout);
-			res.end(stdout);
-		});
+        if(data && data.img_data){
+			var bitmap = new Buffer(data.img_data, 'base64');
+			var imageData = jpeg.decode(bitmap);
+			var fname = (new Date()).getTime() + ".raw";
+			fs.writeFileSync(fname, imageData.data);
+			var cmd = './imgproc border/' + data.img_id + '.txt ' + fname + ' ' + imageData.width + ' ' + imageData.height;
+			console.log(cmd);
+			exec(cmd, function(error, stdout, stderr) {
+				fs.unlinkSync(fname);
+				console.log(stdout);
+				res.end(stdout);
+			});
+		}else{
+			res.end('no data'); 
+		}
     });
     //res.end('no data'); 
 }).listen(8080);

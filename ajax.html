@@ -1,0 +1,16 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+    $.ajax({
+		type: "POST",
+        url: 'http://imgproc-tangram1.1d35.starter-us-east-1.openshiftapps.com/',
+        data: '{"id" : 1}',
+        success: function(data) {
+            alert(data);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            alert('error ' + textStatus + " " + errorThrown);
+        }
+    });
+});
+</script>
